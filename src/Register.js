@@ -67,7 +67,7 @@ const Register = () => {
           <input
             type="password"
             className="contact subject"
-            placeholder="Password..."
+            placeholder="Password (More than 6 characters)"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />

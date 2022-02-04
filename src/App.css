@@ -28,7 +28,7 @@
   --clr-white: #fff;
   --clr-blue: hsl(250, 100%, 50%);
   --clr-blue-light: hsl(250, 100%, 70%);
-  --clr-red-dark: var(--clr-primary-5);
+  --clr-red-dark: red;
   --clr-red-light: hsl(360, 71%, 66%);
   --clr-green-dark: hsl(125, 67%, 44%);
   --clr-green-light: hsl(125, 71%, 66%);
@@ -84,7 +84,7 @@ ul {
   list-style-type: none;
 }
 #message {
-  border: 1px solid var(--clr-grey-1);
+  border: none;
 }
 .alert {
   margin-top: 20px;
@@ -101,8 +101,8 @@ ul {
   background-color: var(--clr-green-light);
 }
 .alert-danger {
-  color: var(--clr-white);
-  background-color: var(--clr-red-light);
+  color: var(--clr-black);
+  background-color: var(--clr-red-dark);
 }
 .back {
   margin-top: 20px;
