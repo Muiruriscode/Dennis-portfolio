@@ -36,9 +36,9 @@ const Register = () => {
       console.log(data);
     } catch (error) {
       msgRef.current.style.display = "block";
-      setHeading("Enter the correct values");
+      setHeading(error.response.data);
       setAlert("danger");
-      console.log(error);
+      console.log(error.response.data.message);
     }
   };
   return (

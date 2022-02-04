@@ -34,10 +34,9 @@ const Contact = () => {
         msgRef.current.style.display = "none";
       }, 3000);
       clearTimeout(() => {});
-
-      // localStorage.setItem("mystore", data);
+      console.log(data.msg);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
     }
   };
   return (

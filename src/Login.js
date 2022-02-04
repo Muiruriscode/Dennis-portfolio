@@ -35,9 +35,9 @@ const Login = () => {
       }
     } catch (error) {
       msgRef.current.style.display = "block";
-      setHeading("Enter correct email and password");
+      setHeading(error.response.data.msg);
       setAlert("danger");
-      console.log("error", error.message);
+      console.log("error", error.response);
     }
   };
   return (
