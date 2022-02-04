@@ -15,7 +15,7 @@ const Contact = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `https://cors-anywhere.herokuapp.com/https://dennis-muiruri-portfolio.herokuapp.com/api/v1/comment`,
+        `https://dennis-muiruri-portfolio.herokuapp.com/api/v1/comment`,
         {
           name,
           email,
