@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { FaCodepen, FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 
@@ -7,12 +7,24 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
   const [subject, setSubject] = useState("");
-  const [heading, setHeading] = useState("two");
-  const [alert, setAlert] = useState("success");
+  const [heading, setHeading] = useState("");
+  const [alert, setAlert] = useState("danger");
   const msgRef = useRef();
+
+  useEffect(() => {
+    const timer = () =>
+      setTimeout(() => {
+        msgRef.current.style.display = "none";
+      }, 3000);
+    const timerId = timer();
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [heading]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const { data } = await axios.post(
         `https://dennis-muiruri-portfolio.herokuapp.com/api/v1/comment`,
@@ -30,13 +42,11 @@ const Contact = () => {
       } else if (!data.success) {
         setAlert("danger");
       }
-      setTimeout(() => {
-        msgRef.current.style.display = "none";
-      }, 3000);
-      clearTimeout(() => {});
-      console.log(data.msg);
+      console.log("data", data);
     } catch (error) {
-      console.log(error.response.data);
+      msgRef.current.style.display = "block";
+      setAlert("danger");
+      setHeading(error.response.data.msg);
     }
   };
   return (

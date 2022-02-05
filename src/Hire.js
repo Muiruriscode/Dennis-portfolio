@@ -1,25 +1,27 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { categories, data } from "./data";
+import { categories } from "./data";
 import SingleCategory from "./SingleCategory";
 import History from "./History";
 
 const Hire = () => {
   const [response, setResponse] = useState();
   const token = localStorage.getItem("muiruriscodetoken");
-  const url = `https://cors-anywhere.herokuapp.com/https://dennis-muiruri-portfolio.herokuapp.com/api/v1/job`;
+  const url = `https://dennis-muiruri-portfolio.herokuapp.com/api/v1/job`;
 
   const getJobs = useCallback(async () => {
-    const { data } = await axios.get(url, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    setResponse(data.jobs);
+    try {
+      const { data } = await axios.get(url, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setResponse(data.jobs);
+    } catch (error) {
+      console.log(error.response);
+    }
   }, [token, url]);
   useEffect(() => {
     getJobs();
   }, [getJobs]);
-
-  console.log(response);
   return (
     <section className="padding">
       <div className="backHome">
@@ -50,7 +52,6 @@ const Hire = () => {
               response.map((item, index) => {
                 const { category, description, myPackage, price, status } =
                   item;
-                console.log(category);
                 return (
                   <History
                     key={index}

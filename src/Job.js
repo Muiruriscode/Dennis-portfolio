@@ -16,33 +16,34 @@ const Job = () => {
   const handleSubmit = async (e) => {
     const token = localStorage.getItem("muiruriscodetoken");
     e.preventDefault();
-    const { data } = await axios.post(
-      `https://cors-anywhere.herokuapp.com/https://dennis-muiruri-portfolio.herokuapp.com/api/v1/job`,
-      {
-        category,
-        myPackage,
-        price,
-        description,
-        token,
-      },
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    setHeading(data.msg);
-    setAlert("success");
-    jobRef.current.style.display = "block";
-    if (data.success) {
+    try {
+      const { data } = await axios.post(
+        `https://dennis-muiruri-portfolio.herokuapp.com/api/v1/job`,
+        {
+          category,
+          myPackage,
+          price,
+          description,
+          token,
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setHeading(data.msg);
       setAlert("success");
-    } else if (!data.success) {
-      setAlert("danger");
+      jobRef.current.style.display = "block";
+      if (data.success) {
+        setAlert("success");
+      } else if (!data.success) {
+        setAlert("danger");
+      }
+      setTimeout(() => {
+        jobRef.current.style.display = "none";
+      }, 3000);
+      clearTimeout(() => {});
+    } catch (error) {
+      console.log(error.response.data);
     }
-    setTimeout(() => {
-      jobRef.current.style.display = "none";
-    }, 3000);
-    clearTimeout(() => {});
-
-    console.log(data);
   };
-
   <br />;
   return (
     <section className="jobSection">

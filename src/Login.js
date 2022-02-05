@@ -5,18 +5,22 @@ import { Link, useHistory } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [alert, setAlert] = useState("success");
-  const [heading, setHeading] = useState("message");
+  const [alert, setAlert] = useState("danger");
+  const [heading, setHeading] = useState("");
   const msgRef = useRef();
   const history = useHistory();
   const url = "https://dennis-muiruri-portfolio.herokuapp.com/api/v1/login";
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      msgRef.current.style.display = "none";
-    }, 3000);
-    return clearTimeout(timer);
-  }, [url]);
+    const timer = () =>
+      setTimeout(() => {
+        msgRef.current.style.display = "none";
+      }, 3000);
+    const timerId = timer();
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [heading]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -33,11 +37,12 @@ const Login = () => {
       } else if (!data.success) {
         setAlert("danger");
       }
+      // clearTimeout();
     } catch (error) {
       msgRef.current.style.display = "block";
       setHeading(error.response.data.msg);
       setAlert("danger");
-      console.log("error", error.response);
+      // clearTimeout();
     }
   };
   return (
