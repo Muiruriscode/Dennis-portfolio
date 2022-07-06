@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { singleJob } from '../data'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import SingleJob from '../components/SingleJob'
 import axios from 'axios'
 import { server } from '../config'
@@ -107,6 +107,9 @@ const Job = () => {
             Submit
           </button>
         </form>
+        <Link to='/'>
+          <button className='homeBtn'>Back to home page</button>
+        </Link>
       </div>
     </section>
   )
