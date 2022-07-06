@@ -1,23 +1,23 @@
-import React from "react";
-import aboutImg from "./img/dennis.JPG";
-import "./App.css";
-import { Link } from "react-router-dom";
+import React from 'react'
+import aboutImg from '../img/dennis.JPG'
+import '../App.css'
+import { Link } from 'react-router-dom'
 
 export const About = () => {
-  const token = localStorage.getItem("muiruriscodetoken");
+  const token = localStorage.getItem('muiruriscodetoken')
   return (
-    <section id="about" className="aboutSection padding">
-      <h1 className="heading">About Me</h1>
-      <div className="grid__2">
+    <section id='about' className='aboutSection padding'>
+      <h1 className='heading'>About Me</h1>
+      <div className='grid__2'>
         <div>
-          <img src={aboutImg} alt="dennis's photo" className="aboutImg" />
+          <img src={aboutImg} alt="dennis's" className='aboutImg' />
         </div>
         <div>
-          <article className="aboutMe">
+          <article className='aboutMe'>
             <h1>About Me</h1>
             <p>
               I am a graduate from Machakos University in Computer Science.
-              Certified in{" "}
+              Certified in{' '}
               <strong>
                 Responsive Design, Javascript Data Structures and Algorithms and
                 Frontend development libraries
@@ -36,20 +36,20 @@ export const About = () => {
               value addition to my clients.
             </p>
           </article>
-          <div className="about">
-            <Link to="/resume">
-              <button className="aboutBtn">Download Cv</button>
+          <div className='about'>
+            <Link to='/resume'>
+              <button className='aboutBtn'>Download Cv</button>
             </Link>
             {
-              <Link to={token ? "/services" : "/login"}>
-                <button className="aboutbtn">Hire Me</button>
+              <Link to={token ? '/services' : '/login'}>
+                <button className='aboutbtn'>Hire Me</button>
               </Link>
             }
           </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default About;
+export default About
